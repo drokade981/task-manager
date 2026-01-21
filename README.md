@@ -45,3 +45,8 @@ php artisan migrate
 ```
 php artisan serve
 ```
+
+- run database seeder for some dummy data
+```
+php artisan db:seed
+```
