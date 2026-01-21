@@ -25,23 +25,23 @@ class TaskController extends Controller
     {
         $task = Task::create($request->validated());
         return new TaskResource($task);
-
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Task $task)
     {
-        //
+        return new TaskResource($task);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(TaskRequest $request, Task $task)
     {
-        //
+        $task->update($request->validated());
+        return new TaskResource($task);
     }
 
     /**
