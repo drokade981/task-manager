@@ -15,3 +15,33 @@ A simple Task Management CRUD application built with Laravel 12 and Vue.js 3.
 - **Backend**: Laravel 12, PHP 8.1+
 - **Frontend**: Vue.js  (Composition/Options API)
 - **Database**: MySQL
+
+## Installation
+
+- clone the repository
+
+``` 
+git clone https://github.com/drokade981/task-manager.git
+```
+
+- npm install and composer install
+```
+composer install
+npm install
+```
+
+- copy .env.example and rename it to .env
+```
+cp .env.example .env
+```
+- create database  
+- configure db in .env file
+- run migration command
+```
+php artisan migrate
+```
+
+- start the application
+```
+php artisan serve
+```
