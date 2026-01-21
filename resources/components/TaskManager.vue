@@ -17,6 +17,16 @@
 
     <br/>
     <hr/>
+
+    <div style="margin:10px 0;">
+        <label>Filter by Status: </label>
+        <select v-model="filteredStatus" @change="loadTasks(1)">
+            <option value="all">All</option>
+            <option value="pending">Pending</option>
+            <option value="in_progress">In Progress</option>
+            <option value="completed">Completed</option>
+        </select>
+    </div>
     
     <table class="table table-bordered">
       <thead>
@@ -82,7 +92,8 @@ export default {
         last_page: 1
       },
       newTask: { title: '', description: '', status: 'pending', due_date: '' },
-      editingTaskId: null
+      editingTaskId: null,
+      filteredStatus: 'all',
     };
   },
   mounted() {
@@ -91,7 +102,7 @@ export default {
   methods: {
     
     async loadTasks(page = 1) {
-      const response = await axios.get(`/api/tasks?page=${page}`);
+      const response = await axios.get(`/api/tasks?page=${page}&status=${this.filteredStatus}`);
       this.tasks = response.data.data;
       this.pagination.current_page = response.data.meta.current_page;
       this.pagination.last_page = response.data.meta.last_page;

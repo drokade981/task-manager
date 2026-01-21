@@ -13,9 +13,15 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return TaskResource::collection(Task::latest()->paginate(10));
+        $query = Task::query();
+
+        if ($request->has('status') && $request->status !== 'all') {
+            $query->where('status', $request->status);
+        }
+
+        return TaskResource::collection($query->latest()->paginate(10));
     }
 
     /**
